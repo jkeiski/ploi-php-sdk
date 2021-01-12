@@ -41,7 +41,7 @@ class Daemon extends Resource
         return $this->getPloi()->makeAPICall($this->getEndpoint());
     }
 
-    public function create(string $command, string $systemUser, int $processes): stdClass
+    public function create(string $command, string $systemUser, int $processes, string $dir): stdClass
     {
         // Remove the id
         $this->setId(null);
@@ -51,7 +51,8 @@ class Daemon extends Resource
             'body' => json_encode([
                 'command' => $command,
                 'system_user' => $systemUser,
-                'processes' => $processes
+                'processes' => $processes,
+                'directory' => $dir
             ]),
         ];
 
